@@ -28,7 +28,7 @@ set :deploy_to, "/var/www/apps/#{application}"
 
 # XXX we may not need this - it doesn't work on windows
 set :user, 'dp'
-set :repository, "svn+ssh://#{user}@#{domain}#{deploy_to}/repos/trunk"
+set :repository, "svn+ssh://dp@alltimetop5.com/var/www/apps/alltimetop5/repos/trunk"
 set :rails_env, "production"
 
 # Automatically symlink these directories from current/public to shared/public.
