@@ -59,7 +59,6 @@ class ListsController < ApplicationController
         flash[:error] = "Sorry, we can't find that list"
       end
       # send out the email
-      # TODO: implement the emailing here
       
       email_addresses = Array.new
       for i in 1..5
