@@ -66,6 +66,6 @@ production:
   adapter: mysql
   database: alltimetop5_production
   username: dp
-  password: 
+  password: alligator
   host: localhost
   socket: /var/run/mysqld/mysqld.sock
