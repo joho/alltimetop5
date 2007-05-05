@@ -1,0 +1,9 @@
+<h2>Share your list</h2>
+<p>So you want to let everyone know about your all time top 5 <strong><%= @list.title -%></strong>? Just enter up to five email addresses below to send them an email.</p>
+
+<% form_tag(:action => :email, :id => @list) do %>
+	<% for i in 1..5 %>
+		<%= text_field_tag("email_address_#{i}", params['email_address_#{i}'], :size => 40) -%><br />
+	<% end %>
+	<%= submit_tag 'Send!' -%>
+<% end %>

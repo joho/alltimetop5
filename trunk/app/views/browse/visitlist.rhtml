@@ -1,0 +1,7 @@
+<h1><%= h @user.username -%>'s All Time Top 5 <%= h @list.title -%></h1>
+<ol>
+	<% for list_item in @list.list_items %>
+		<li><strong><%= h list_item.title -%></strong>
+			<br /><%= h list_item.comment -%></li>
+	<% end %>
+</ol>

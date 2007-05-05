@@ -1,0 +1,13 @@
+<% if @user.nil? %>
+Login here
+<%= form_tag %>
+<%= render :partial => 'loginbox' %>
+<input type="submit" value="login">
+<%= end_form_tag %>
+<%= link_to 'Register here',
+	:action => 'new' %>	
+<% else %>
+You are already logged in as <%= h @user.username -%><br />
+You can <%= link_to 'log out here',
+	:action => 'logout' %>.
+<% end %>

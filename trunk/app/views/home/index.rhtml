@@ -1,0 +1,24 @@
+<h1>Welcome to alltimetop5</h1>
+<p>Ever found yourself arguing all night with your best friends over exactly
+	which songs would make it onto your desert island top 5 mix tape? How about
+	the must see all time top 5 travel destinations in South America? The 5
+	love to hate shitty video game to movie conversions that you think everyone
+	should see?</p>
+<p>Alltimetop5 is the place for you, your friends, and all of your overarching
+	obsessions. Having to list 5 and only 5 of your favourites might seem harsh
+	but we believe the restriction is liberating; you will be forced to separate the
+	truly loved from the merely liked.</p>
+<h2>Getting started:</h2>
+<p>To create your own list of your all time top 5 of anything
+<%= link_to "login or create an account", 
+	:controller => 'users',
+	:action => 'login' -%>.</p>
+<p>To view some of the other lists that have been created feel free to
+<%= link_to "view all lists",
+	:controller => 'lists' -%>.</p>
+<p>How about you try and find one of your friends by username or email address?
+<%= link_to "find user",
+	:controller => 'browse',
+	:action => 'finduser' -%></p>
+
+

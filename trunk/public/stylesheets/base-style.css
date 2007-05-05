@@ -1,0 +1,44 @@
+body
+{
+	font-family: Trebuchet, Verdana, Sans-Serif;
+}
+
+#header h1
+{
+	float: left;
+	background-image: url('/images/alltimetop5BETA.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 308px;
+	height: 90px;
+	text-indent: -100em;
+}
+
+#header ul
+{
+	margin: 0;
+	padding: 60px 0 0 75px;
+	cursor: default;
+	list-style-type: none;
+	display: inline;
+	display: table;
+}
+
+#header ul li
+{
+	list-style-type: none;
+	display: inline;
+	padding: 5px 10px 5px 10px;
+	border: solid #000 1px;
+	margin: 5px 5px 5px 5px;
+}
+
+#main-content
+{
+	min-height: 400px;
+}
+
+div.clear
+{
+	clear: both;
+}

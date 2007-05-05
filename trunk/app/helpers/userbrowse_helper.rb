@@ -1,0 +1,2 @@
+module UserbrowseHelper
+end

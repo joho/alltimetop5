@@ -1,0 +1,15 @@
+<h1>Welcome to <%= h @user.username -%>'s lists</h1>
+<% if @user.lists.empty? %>
+<p>Sorry. There are no
+<% else %>
+<p><%= h @user.username -%> has <%= h @user.lists.size -%> lists available for browsing.</p>
+<p>Here they are in order of most recently updated:</p>
+<ul>
+	<% for list in @user.lists %>
+		<li><%= link_to "All time top 5 #{h list.title}",
+			:action => "visitlist",
+			:id => list -%></li>
+	
+	<% end %>
+</ul>
+<% end %>

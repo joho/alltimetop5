@@ -1,0 +1,16 @@
+<% for column in List.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @list.send(column.name) %>
+</p>
+<% end %>
+<% if @list.has_list_items? %>
+	<h3>all time top 5 are</h3>
+	<% for list_item in @list.list_items %>
+		<% for column in ListItem.content_columns %>
+			<p><b><%= column.human_name %></b> <%=h list_item.send(column.name) %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @list %> |
+<%= link_to 'Back', :action => 'list' %>

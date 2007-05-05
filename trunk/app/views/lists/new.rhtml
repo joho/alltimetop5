@@ -1,0 +1,11 @@
+<h1>New list</h1>
+
+<%= start_form_tag :action => 'create' %>
+  <%= render :partial => 'form' %>
+	<% for listnumber in 1..5 %>
+		<%= render :partial => 'list_items/listentry', :locals => {:position => listnumber} %>
+	<% end %>
+  <%= submit_tag "Create" %>
+<%= end_form_tag %>
+
+<%= link_to 'Back', :action => 'list' %>
