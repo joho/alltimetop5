@@ -1,4 +1,4 @@
-<h1>Listing lists</h1>
+<h1>Welcome to List Central</h1>
 <% if @lists.empty? %>
 	<h3>Welcome!</h3>
 	<p>This is where you will create your lists of your alltimetop5 of anything. The rules are simple.</p>
@@ -8,7 +8,7 @@
 	</ul>
 	<p>Get started by creating your <%= link_to 'first list here', :action => 'new' -%>.</p>
 <% else %>
-<h2>Manage your lists</h2>
+<h2>Manage your lists here</h2>
 <p>You can create a <%= link_to 'new list here', :action => 'new' -%>.</p>
 <h3>Your current lists:</h3>
 <table>

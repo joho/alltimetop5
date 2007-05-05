@@ -1,12 +1,8 @@
-Number <%= position -%><br />
 <div class="ListItemFormGroup">
 <%= error_messages_for "list_item#{position}" %>
-
-<!--[form:list_item]-->
-<p><label for="list_item_title">Title</label>
-<%= text_field "list_item#{position}", 'title'  %></p>
-
-<p><label for="list_item_comment">Reason it belongs here</label><br/>
+<label for="list_item_title"><%= position -%>.</label>
+<%= text_field "list_item#{position}", 'title'  %>
+<br />
+<p><label for="list_item_comment">...and it belongs here because</label><br/>
 <%= text_area "list_item#{position}", 'comment', :cols => "30", :rows => "3"  %></p>
-<!--[eoform:list_item]-->
 </div>
