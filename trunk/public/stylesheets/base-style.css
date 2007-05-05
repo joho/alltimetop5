@@ -33,6 +33,18 @@ body
 	margin: 5px 5px 5px 5px;
 }
 
+#center-wrap
+{
+	text-align: center;
+}
+
+#content-wrap
+{
+	width: 650px;
+	margin: 0 auto;
+	text-align: left;
+}
+
 #main-content
 {
 	min-height: 400px;
