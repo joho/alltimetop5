@@ -1,0 +1,13 @@
+<h2>Tagging your All Time Top 5 <%= @list.title -%></h2>
+<ol>
+	<% for list_item in @list.list_items %>
+		<li><strong><%= h list_item.title -%></strong>
+			<br /><%= h list_item.comment -%></li>
+	<% end %>
+</ol>
+<% form_tag do %>
+	<%= text_field_tag 'tag_list',
+						@list.tags.collect { |t| t.name }.join(' '),
+						:size => 40 -%>
+	<%= submit_tag 'Tag!' -%>
+<% end %>

@@ -1,0 +1,12 @@
+<h2>Browsing lists tagged with <%= @tag_name -%></h2>
+<ul>
+<% for list in @lists %>
+	<li><%= link_to "All Time Top 5 #{list.title}", 
+							:action => 'visitlist',
+							:username => list.user.username,
+							:id => list -%>
+		by <strong><%= link_to list.user.username,
+						:action => 'visitlists',
+						:username => list.user.username -%></li>
+<% end %>
+</ul>

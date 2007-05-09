@@ -8,12 +8,19 @@ class ListsController < ApplicationController
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update, :share ],
+  verify :method => :post, :only => [ :destroy, :create, :update, :email ],
          :redirect_to => { :action => :list }
 
   def list
     # TODO: replace with err.the_blog's pagination functionality
-    @list_pages, @lists = paginate :lists, :per_page => 10
+    
+    user = session[:user]
+    if user.nil?
+      flash[:error] = 'You must be logged in to manage your lists'
+      redirect_to :controller => 'users', :action => 'login'
+    end
+    
+    @lists = user.lists
   end
 
   def show
@@ -97,5 +104,14 @@ class ListsController < ApplicationController
   def destroy
     List.find(params[:id]).destroy
     redirect_to :action => 'list'
+  end
+  
+  def tag
+    @list = List.find(params[:id])
+    if request.post?
+      @list.tag(params[:tag_list])
+      flash[:notice] = "Successfully tagged all time top 5 #{@list.title}"
+      redirect_to :action => 'list'
+    end
   end
 end

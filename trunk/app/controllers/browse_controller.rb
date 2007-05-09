@@ -1,5 +1,7 @@
 class BrowseController < ApplicationController
   def index
+    @category_list = %w(one two three four five)
+    @tags_count = List.tags_count(:limit => 20)
   end
   
   def lists
@@ -34,5 +36,12 @@ class BrowseController < ApplicationController
     @user = User.find_by_username(params[:username])
     
     @list = List.find(params[:id], :include => [:list_items])
+  end
+  
+  def show_tag
+    # show some tagging love
+    @tag_name = params[:tag_name]
+    # TODO: Replace this tagged with call - it gives a n + 1 db call issue
+    @lists = List.find_tagged_with(:all => @tag_name)
   end
 end

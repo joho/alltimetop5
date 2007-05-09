@@ -1,4 +1,15 @@
 <h2>Browsing</h2>
 <p>Feel free to have a look around at some of the other lists our users have created.</p>
+<h3>You can find lists by our most popular tags:</h3>
+<div class="tag_cloud">
+<% List.cloud(@tags_count, @category_list) do |tag, category| %>
+	<%= link_to tag, {:tag_name => tag, :action => 'show_tag'} , :class => category -%>
+<% end %>
+</div>
+<!--
+<h3>Browse the lists of some of our top users:</h3>
+<div class="browse_top_users">TODO: top users</div> -->
+<h3>Search for a specific user</h3>
 <p>If someone you know is using the site you can <%= link_to "search users here", :action => "finduser" -%> by email address or username.</p>
+<h3>Browse all our lists:</h3>
 <p>If you just want to go straight to the lists you can <%= link_to "browse lists here", :action => "lists" -%>.</p>

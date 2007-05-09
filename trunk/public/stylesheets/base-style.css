@@ -60,3 +60,29 @@ div.clear
 {
 	clear: both;
 }
+
+.tag_cloud a.one
+{
+	font-size: 0.8em;
+}
+
+.tag_cloud a.two
+{
+	font-size: 1em;
+}
+
+.tag_cloud a.three
+{
+	font-size: 1.2em;
+}
+
+.tag_cloud a.four
+{
+	font-size: 1.5em;
+}
+
+.tag_cloud a.five
+{
+	font-size: 2em;
+}
+

@@ -6,6 +6,7 @@
 	<% for listnumber in 1..5 %>
 		<%= render :partial => 'list_items/listentry', :locals => {:position => listnumber} %>
 	<% end %>
+	* denotes required field
   <%= submit_tag "Create" %>
 <%= end_form_tag %>
 
