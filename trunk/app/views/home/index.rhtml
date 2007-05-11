@@ -13,7 +13,7 @@
 </div>
 <div class="home-center">
 	<h2 class="featured5">Featured 5</h2>
-	<h3>All Time Top 5 <%= h @featured_list.title -%></h3>
+	<h3>All Time Top 5 <%= h @featured_list.title -%> by <%= @featured_list.user.username -%></h3>
 	<ol class="top5">
 	<% for list_item in @featured_list.list_items %>
 		<li><strong><%= h list_item.title -%></strong><br />
