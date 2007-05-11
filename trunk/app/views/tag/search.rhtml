@@ -1,0 +1,14 @@
+<% if @lists.empty? %>
+	<h3>Sorry</h3>
+	<p>We couldn't find any lists matching your search terms</p>
+<% else %>
+	<h3>Lists matching <%= h @search_terms -%></h3>
+	<ul>
+		<% for list in @lists %>
+			<li><%= link_to "All time top 5 <strong>#{list.title}</strong>", 
+						:username => list.user.username,
+						:action => 'visitlist',
+						:id => list -%> by <%= list.user.username -%></li>
+		<% end %>
+	</ul>
+<% end %>

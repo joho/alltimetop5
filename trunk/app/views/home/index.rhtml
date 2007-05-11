@@ -1,4 +1,6 @@
-<h1>Welcome to alltimetop5</h1>
+<div class="home-left">
+<h1>All Time Top 5</h1>
+<h2 class="about">About</h2>
 <p>Ever found yourself arguing all night with your best friends over exactly
 	which songs would make it onto your desert island top 5 mix tape? How about
 	the must see all time top 5 travel destinations in South America? The 5
@@ -8,17 +10,36 @@
 	obsessions. Having to list 5 and only 5 of your favourites might seem harsh
 	but we believe the restriction is liberating; you will be forced to separate the
 	truly loved from the merely liked.</p>
-<h2>Getting started:</h2>
-<p>To create your own list of your all time top 5 of anything
-<%= link_to "login or create an account", 
-	:controller => 'users',
-	:action => 'login' -%>.</p>
-<p>To view some of the other lists that have been created feel free to
-<%= link_to "view all lists",
-	:controller => 'lists' -%>.</p>
-<p>How about you try and find one of your friends by username or email address?
-<%= link_to "find user",
-	:controller => 'browse',
-	:action => 'finduser' -%></p>
+</div>
+<div class="home-center">
+	<h2 class="featured5">Featured 5</h2>
+	<h3>All Time Top 5 <%= h @featured_list.title -%></h3>
+	<ol class="top5">
+	<% for list_item in @featured_list.list_items %>
+		<li><strong><%= h list_item.title -%></strong><br />
+			<%= h list_item.comment -%></li>
+	<% end %>
+	</ol>
+	<h2 class="Browse5">Browse 5</h2>
+	<ul>
+		<% for list in @recent_lists %>
+			<li>All time top 5 <strong><%= h list.title %></strong> by <%= h list.user.username -%></li>
+		<% end %>
+	</ul>
+	<h2 class="Top5Tags">Top 5 Tags</h2>
+	<p><%= @top_tags.collect { |tag, value| link_to tag, {:tag_name => tag, :action => 'show_tag'}}.join(', ') -%></p>
+</div>
+<div class="home-right">
+	<h2 class="create5">Create 5</h2>
+	<p><strong>Signup now... it's free</strong></p>
+	<p>To create your own list of your all time top 5 of anything
+	<%= link_to "login or create an account", 
+		:controller => 'users',
+		:action => 'login' -%>.</p>
+	<%= render :partial => 'tag/searchbox' %>
+</div>
+
+
+
 
 
