@@ -1,15 +1,45 @@
 <h2>Browsing</h2>
 <p>Feel free to have a look around at some of the other lists our users have created.</p>
+
+<div class="browse-tag-cloud">
 <h3>You can find lists by our most popular tags:</h3>
-<div class="tag_cloud">
+<ul class="cloud">
 <% List.cloud(@tags_count, @category_list) do |tag, category| %>
-	<%= link_to tag, {:tag_name => tag, :action => 'show_tag'} , :class => category -%>
+	<li><%= link_to tag, {:tag_name => tag, :action => 'show_tag'} , :class => category -%></li>
+<% end %>
+</ul>
+</div>
+<div class="browse-users">
+<h3>All time top 5 users</h3>
+<ol>
+<% for user in @top_users %>
+	<li><%= link_to user.username,
+			:username => user.username,
+			:action => 'visitlists' -%></li>
+<% end %>
+</ol>
+<h3>Search for a user</h3>
+<% form_tag(:action => 'finduser') do %>
+	<%= text_field_tag 'searchterm' -%>
+	<div class="buttons">
+	<button type="submit">
+		<%= image_tag 'icons/magnifier.png' -%>Search
+	</button>
+	</div>
 <% end %>
 </div>
-<!--
-<h3>Browse the lists of some of our top users:</h3>
-<div class="browse_top_users">TODO: top users</div> -->
-<h3>Search for a specific user</h3>
-<p>If someone you know is using the site you can <%= link_to "search users here", :action => "finduser" -%> by email address or username.</p>
-<h3>Browse all our lists:</h3>
-<p>If you just want to go straight to the lists you can <%= link_to "browse lists here", :action => "lists" -%>.</p>
+<div class="browse-lists">
+<h3>All time top 5 lists</h3>
+<ol>
+<% for list in @top_lists %>
+	<li><%= link_to "All time top 5 #{list.title}",
+				:username => list.user.username,
+				:action => 'visitlist',
+				:id => list -%> by <%= link_to list.user.username,
+										:username => list.user.username,
+										:action => 'visitlists' -%></li>
+<% end %>
+</ol>
+<h3>Browse all lists</h3>
+<p>For all the rest of the lists <%= link_to "browse lists here", :action => "lists" -%>.</p>
+</div>

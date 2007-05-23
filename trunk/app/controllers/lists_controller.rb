@@ -74,7 +74,7 @@ class ListsController < ApplicationController
       end
       
       unless email_addresses.empty?
-        ListsEmailer.deliver_share(@list, email_addresses)
+        ListEmailer.deliver_share(@list, email_addresses)
         flash[:notice] = 'Your emails have been sent out. Feel free to send more!'
       else
         flash[:error] = 'You must include at least one email adress!'

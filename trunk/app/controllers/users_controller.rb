@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "Hi #{@user.username}, thanks for registering."
       session[:user] = @user
-      redirect_to :controller => 'home'
+      redirect_to :controller => 'lists'
     else
       render :action => 'new'
     end
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   
   def logout
     unless session[:user].nil?
-      flash[:notice] = "Goodbye #{session[:user].username}. You have succesfully logged"
+      flash[:notice] = "Goodbye #{session[:user].username}. You have been logged out."
       session[:user] = nil
     end
     

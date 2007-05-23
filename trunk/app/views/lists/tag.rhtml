@@ -9,5 +9,9 @@
 	<%= text_field_tag 'tag_list',
 						@list.tags.collect { |t| t.name }.join(' '),
 						:size => 40 -%>
-	<%= submit_tag 'Tag!' -%>
+	<div class="buttons">
+	<button type="submit">
+		<%= image_tag 'icons/tag_blue.png' -%>Tag
+	</button>
+	</div>
 <% end %>

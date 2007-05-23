@@ -1,13 +1,28 @@
 <% if @user.nil? %>
-Login here
-<%= form_tag %>
-<%= render :partial => 'loginbox' %>
-<input type="submit" value="login">
-<%= end_form_tag %>
-<%= link_to 'Register here',
-	:action => 'new' %>	
+<div class="login-forms">
+	<h2>Login</h2>
+	<% form_tag do %>
+		<%= render :partial => 'loginbox' -%>
+		<div class="buttons">
+			<button type="submit">
+				<%= image_tag 'icons/group_go.png' -%>Login
+			</button>
+		</div>
+	<% end %>
+	<div class="clear"></div>
+	<br />
+	<h2>...or register here</h2>
+	<% form_tag :action => 'create' do %>
+		<%= render :partial => 'form' -%>
+		<div class="buttons">
+			<button type="submit">
+				<%= image_tag 'icons/group_add.png' -%>Register
+			</button>
+		</div>
+	<% end %>
+</div>
 <% else %>
 You are already logged in as <%= h @user.username -%><br />
-You can <%= link_to 'log out here',
-	:action => 'logout' %>.
+You can <%= link_to 'log out',
+	:action => 'logout' %> if you like.
 <% end %>

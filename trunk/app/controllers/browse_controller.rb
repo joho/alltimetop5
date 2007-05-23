@@ -2,11 +2,15 @@ class BrowseController < ApplicationController
   def index
     @category_list = %w(one two three four five)
     @tags_count = List.tags_count(:limit => 20)
+    
+    @top_users = User.find(:all, :limit => 5)
+    
+    @top_lists = List.find(:all, :limit => 5, :include => [:user], :order => 'lists.created_at')
   end
   
   def lists
     #TODO: This action is for just browsing through lists (add categories maybe?)
-    @lists = List.find(:all, :include => [:user])
+    @lists = List.find(:all, :include => [:user], :order => 'lists.created_at DESC')
   end
 
   def finduser

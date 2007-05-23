@@ -6,8 +6,13 @@
 	<% for listnumber in 1..5 %>
 		<%= render :partial => 'list_items/listentry', :locals => {:position => listnumber} %>
 	<% end %>
-	* denotes required field
-  <%= submit_tag "Create" %>
+	<%= image_tag 'icons/asterisk_orange.png' -%>denotes required field<br />
+	<div class="buttons">
+  		<button type="submit">
+			<%= image_tag 'icons/accept.png' -%>Save
+		</button>
+		<%= link_to "#{image_tag('icons/cancel.png')} Back", :action => 'list' %>
+	</div>
 <%= end_form_tag %>
 
-<%= link_to 'Back', :action => 'list' %>
+

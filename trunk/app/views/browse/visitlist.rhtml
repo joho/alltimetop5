@@ -5,3 +5,11 @@
 			<br /><%= h list_item.comment -%></li>
 	<% end %>
 </ol>
+<p>View more lists created by <%= link_to h(@user.username),
+									:controller => 'browse',
+									:username => @user.username,
+									:action => 'visitlists' -%></p>
+<p>This list was tagged with <%= @list.tags.collect { |tag| link_to(tag.name,
+									:controller => 'browse',
+									:action => 'show_tag',
+									:tag_name => tag.name)}.join(', ') -%></p>

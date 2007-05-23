@@ -52,3 +52,9 @@ end
 
 # Include your application configuration below
 require_gem 'acts_as_taggable'
+
+class ActiveRecord::Base
+  def to_param
+    "#{self.id}-#{self.title}"
+  end
+end

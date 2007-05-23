@@ -1,7 +1,7 @@
 <div class="ListItemFormGroup">
 <%= error_messages_for "list_item#{position}" %>
 <label for="list_item_title"><%= position -%>.</label>
-<%= text_field "list_item#{position}", 'title'  %>*
+<%= text_field "list_item#{position}", 'title'  %><%= image_tag 'icons/asterisk_orange.png' -%>
 <br />
 <p><label for="list_item_comment">...and it belongs here because</label><br/>
 <%= text_area "list_item#{position}", 'comment', :cols => "30", :rows => "3"  %></p>

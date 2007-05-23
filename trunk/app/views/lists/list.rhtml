@@ -1,4 +1,4 @@
-<h1>Welcome to List Central</h1>
+<h2>My alltimetop5</h2>
 <% if @lists.empty? %>
 	<h3>Welcome!</h3>
 	<p>This is where you will create your lists of your alltimetop5 of anything. The rules are simple.</p>
@@ -8,27 +8,20 @@
 	</ul>
 	<p>Get started by creating your <%= link_to 'first list here', :action => 'new' -%>.</p>
 <% else %>
-<h2>Manage your lists here</h2>
 <p>You can create a <%= link_to 'new list here', :action => 'new' -%>.</p>
 <h3>Your current lists:</h3>
-<table>
-  <tr>
-  	<th>Title</th>
-	<th>Created on</th>
-	<th colspan="3">Actions</th>
-  </tr>
-  
+<ul class="manage-list">
 <% for list in @lists %>
-  <tr>
-    <td><%= h list.title -%></td>
-	<td><%= list.created_at.to_date.to_s :short -%></td>
-    <td><%= link_to 'Show', :action => 'show', :id => list %></td>
-	<td><%= link_to 'Share', :action => 'share', :id => list -%></td>
-    <td><%= link_to 'Tag', :action => 'tag', :id => list %></td>
-    <td><%= link_to 'Delete', { :action => 'destroy', :id => list }, :confirm => 'Do you really want to delete this?', :post => true %></td>
-  </tr>
+<li>
+    <%= link_to "My All Time Top 5 #{h(list.title)}", :action => 'show', :id => list -%>
+	<%= list.created_at.to_date.to_s :short -%>
+	<div class="buttons">
+		<%= link_to "#{image_tag 'icons/group.png'}Share" , :action => 'share', :id => list -%>
+    	<%= link_to "#{image_tag 'icons/tag_blue.png'}Tag", :action => 'tag', :id => list %>
+    	<%= link_to "#{image_tag 'icons/delete.png'}Delete", { :action => 'destroy', :id => list }, :confirm => 'Do you really want to delete this?', :post => true %>
+	</div>
+</li>
 <% end %>
-</table> 
-
+</ul>
 <br />
 <% end %>

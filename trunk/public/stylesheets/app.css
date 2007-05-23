@@ -1,0 +1,47 @@
+
+#center-wrap {text-align: center;}
+
+#content-wrap
+{
+	width: 650px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#main-content
+{
+	min-height: 400px;
+	margin: 10px 30px 10px 10px;
+}
+
+#sidebar-right {float: right;}
+
+div.clear {clear: both;}
+
+.cloud li {display:inline;list-style:none;}
+.cloud a.one {font-size: 0.8em;}
+.cloud a.two {font-size: 1em;}
+.cloud a.three {font-size: 1.2em;}
+.cloud a.four {font-size: 1.5em;}
+.cloud a.five {font-size: 2em;}
+
+.manage-list .buttons{display:block; float:right;margin-bottom:3px;}
+.manage-list li {display:block; min-height:40px; border-top:1px solid #061D3E; 
+	padding-top:5px;clear:both;}
+
+.browse-tag-cloud{border-top:1px solid #CC6600;
+	border-bottom:1px solid #CC6600;margin-bottom:10px;}
+
+.browse-users {float:left;border-top:1px solid #CC6600;
+		border-bottom:1px solid #CC6600;width:300px;}
+.browse-users input {float:left;}
+.browse-users .buttons {float:right; margin-bottom:3px;}
+
+.browse-lists {float:right;border-top:1px solid #CC6600;
+			border-bottom:1px solid #CC6600;width:300px;}
+			
+.login-forms label {float:left;}
+.login-forms input {float:right;}
+.login-forms p {clear:both; width:420px;}
+.login-forms .buttons {clear:both;}
+

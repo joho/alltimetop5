@@ -2,21 +2,13 @@
 <head>
   <title>alltimetop5 - <%= controller.action_name %></title>
  	<%= stylesheet_link_tag 'scaffold' %>
-	<%= stylesheet_link_tag 'base-style' %>
+	<%= stylesheet_link_tag 'base' %>
+	<%= stylesheet_link_tag 'app' %>
 </head>
 <body>
 
-<div id="header">
-	<h1>alltimetop5</h1>
-	<ul>
-		<li><a href="/" title="home">home</a></li>
-		<li><%= link_to "browse", :controller => "browse" -%></li>
-		<li><%= link_to "create", :controller => "lists" -%></li>
-	</ul>
-</div>
-		
-<div class="clear"></div>
-<div id="center-wrap">
+<%= render :partial => 'common/header' -%>
+
 <div id="content-wrap">
 <div id="sidebar-right">
 	<script type="text/javascript"><!--
@@ -46,13 +38,9 @@
 	<% if flash[:error] %>
 	<p style="color: red"><%= flash[:error] %></p>
 	<% end %>
-	<%= yield  %>
+	<%= yield %>
 </div>
-
-
-<div class="clear"></div>
 </div><!-- end of content wrap -->
-</div><!-- end of center wrap -->
 <%= render :partial => 'common/footer' -%>
 </body>
 </html>
