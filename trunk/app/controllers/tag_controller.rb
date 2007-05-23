@@ -11,6 +11,7 @@ class TagController < ApplicationController
   end
   
   def browse
-    @tags = Tag.find(:all)
+    @category_list = %w(one two three four five)
+    @tags_count = List.tags_count()
   end
 end

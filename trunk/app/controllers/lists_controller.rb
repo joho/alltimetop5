@@ -13,14 +13,8 @@ class ListsController < ApplicationController
 
   def list
     # TODO: replace with err.the_blog's pagination functionality
-    
     user = session[:user]
-    if user.nil?
-      flash[:error] = 'You must be logged in to manage your lists'
-      redirect_to :controller => 'users', :action => 'login'
-    end
-    
-    @lists = user.lists
+    @lists = user.lists.find(:all, :order => 'lists.created_at DESC')
   end
 
   def show
@@ -29,9 +23,17 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    rebuttal_id = params[:id]
+    if rebuttal_id
+      @rebuttal_mode = true
+      rebutted_list = List.find(rebuttal_id)
+      @create_title = "Respond to #{rebutted_list.user.username}'s all time top 5 #{rebutted_list.title}"
+      @list.rebuts = rebutted_list
+    end
   end
 
   def create
+    params[:list][:comment] = nil if params[:list][:comment].empty?
     @list = List.new(params[:list])
     @list.user = session[:user]
     
@@ -46,7 +48,8 @@ class ListsController < ApplicationController
     end
     
     if @list.save
-      flash[:notice] = 'List was successfully created.'
+      flash[:notice] = "We've saved your all time top 5 #{@list.title}"
+      @list.tag(params[:tag_list])
       redirect_to :action => 'list'
     else
       ApplicationHelper.tidy_error_messages(@list, ['list_items'])
@@ -74,8 +77,13 @@ class ListsController < ApplicationController
       end
       
       unless email_addresses.empty?
-        ListEmailer.deliver_share(@list, email_addresses)
-        flash[:notice] = 'Your emails have been sent out. Feel free to send more!'
+        begin
+          ListEmailer.deliver_share(@list, email_addresses)
+          flash[:notice] = 'Your emails have been sent out. Feel free to send more!'
+        rescue Exception => boom
+          flash[:error] = 'Sorry, there was a hiccup trying to send mail, maybe try again later'
+          flash[:debug_info] = boom
+        end
       else
         flash[:error] = 'You must include at least one email adress!'
       end
@@ -102,7 +110,9 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    List.find(params[:id]).destroy
+    list = List.find(params[:id])
+    flash[:notice] = "Deleted your all time top 5 #{list.title}"
+    list.destroy
     redirect_to :action => 'list'
   end
   

@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
     @password = nil
   end
   
-  #def validate
-  #  errors.add('password_confirmation', 'need to match passwords') unless password == password_confirmation
-  #end
+  def validate
+    errors.add('username', "Sorry, that username isn't allowed") if disallowed_usernames.include? username
+  end
   
   def self.hash_password(password)
     Digest::SHA1.hexdigest(password)
@@ -40,5 +40,13 @@ class User < ActiveRecord::Base
       :conditions => ['username = ?', username],
       :order      => "users.updated_at DESC",
       :include    => [:lists] )
+  end
+  
+  def self.top5
+    User.find(:all, :limit => 5)
+  end
+  
+  def disallowed_usernames
+    %w(root admin alltimetop5 adminstrator)
   end
 end

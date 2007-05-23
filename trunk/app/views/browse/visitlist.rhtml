@@ -1,17 +1,46 @@
 <h2><%= h @user.username -%>'s All Time Top 5 <%= h @list.title -%></h2>
+<% if @list.rebuts %>
+	<p>This list was created as a direct response to <%= h @list.rebuts.user.username -%>'s
+		<%= link_to "all time top 5 #{@list.rebuts.title}" -%>.</p>
+<% end %>
 <ol>
 	<% for list_item in @list.list_items %>
 		<li><strong><%= h list_item.title -%></strong>
 			<br /><%= h list_item.comment -%></li>
 	<% end %>
 </ol>
-<p>View more lists created by <%= link_to h(@user.username),
-									:controller => 'browse',
-									:username => @user.username,
-									:action => 'visitlists' -%></p>
+
+<% if @list.comment || !@list.comment.empty? %>
+<h3>Backstory</h3>
+<p><%= h @list.comment %></p>
+<% end %>
+
+<p>If you think that <%= h @user.username -%> has no idea and that this list is way off base you should <%= link_to 'respond to this list',
+			:controller => 'lists',
+			:action => 'new',
+			:id => @list -%>.</p>
+
 <% unless @list.tags.empty? %>
+<h4>Tags</h4>
 <p>This list was tagged with <%= @list.tags.collect { |tag| link_to(tag.name,
 									:controller => 'browse',
 									:action => 'show_tag',
 									:tag_name => tag.name)}.join(', ') -%></p>
 <% end %>
+
+<% unless @rebuttals.empty? %>
+<h4>Responses</h4>
+<p>This list has been responded to by
+	<%= @rebuttals.collect { |rebuttal|
+		 	link_to h(rebuttal.user.username),
+				:controller => 'browse',
+				:username => rebuttal.user.username,
+				:action => 'visitlist',
+				:id => rebuttal }.join(', ') -%>.
+</p>
+<% end %>
+<h4>Other lists</h4>
+<p>View more lists created by <%= link_to @user.username,
+									:controller => 'browse',
+									:username => @user.username,
+									:action => 'visitlists' -%></p>

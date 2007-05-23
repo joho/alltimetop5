@@ -1,24 +1,12 @@
 class UsersController < ApplicationController
-  # must be logged in in all cases, except when logging in
-  before_filter :authorize, :except => [:login, :new, :create]
-  
   def index
     list
-    render :action => 'list'
+    render :action => 'login'
   end
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
-  verify :method => :post, :only => [ :destroy, :create, :update ],
-         :redirect_to => { :action => :list }
-
-  def list
-    # TODO: replace with err.the_blog's i_will_paginate functionality
-    @user_pages, @users = paginate :users, :per_page => 10
-  end
-
-  def show
-    @user = User.find(params[:id])
-  end
+  verify :method => :post, :only => [ :create ],
+         :redirect_to => { :action => :login }
 
   def new
     @user = User.new
@@ -29,29 +17,10 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "Hi #{@user.username}, thanks for registering."
       session[:user] = @user
-      redirect_to :controller => 'lists'
+      redirect_to_uri
     else
       render :action => 'new'
     end
-  end
-
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
-      flash[:notice] = 'User was successfully updated.'
-      redirect_to :action => 'show', :id => @user
-    else
-      render :action => 'edit'
-    end
-  end
-
-  def destroy
-    User.find(params[:id]).destroy
-    redirect_to :action => 'list'
   end
   
   def login
@@ -61,7 +30,7 @@ class UsersController < ApplicationController
       if @user
         flash[:notice] = "Welcome back #{@user.username}"
         session[:user] = @user
-        redirect_to :controller => 'lists', :action => 'list'
+        redirect_to_uri
       else
         flash[:notice] = "There was a problem logging you in. Please check your username and password"
         redirect_to :action => 'login'
@@ -78,5 +47,12 @@ class UsersController < ApplicationController
     end
     
     redirect_to :action => 'login'
+  end
+  
+  private 
+  def redirect_to_uri
+    uri = session[:original_uri]
+    session[:original_uri] = nil
+    redirect_to(uri || {:controller => 'lists', :action => 'list'})
   end
 end

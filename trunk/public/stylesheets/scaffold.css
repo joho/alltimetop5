@@ -1,15 +1,11 @@
-body { background-color: #fff; color: #333; }
-
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
 
-.fieldWithErrors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+.fieldWithErrors input{
+  background-color:red;
 }
 
 #errorExplanation {
@@ -24,11 +20,11 @@ pre {
 #errorExplanation h2 {
   text-align: left;
   font-weight: bold;
+  text-decoration: underline;
   padding: 5px 5px 5px 15px;
-  font-size: 12px;
+  font-size: 1.2em;
   margin: -7px;
-  background-color: #c00;
-  color: #fff;
+  color: #c00;
 }
 
 #errorExplanation p {

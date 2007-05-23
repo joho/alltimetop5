@@ -2,10 +2,7 @@ class HomeController < ApplicationController
   def index
     @top_tags = List.tags_count(:limit => 5)
     
-    @recent_lists = List.find(:all, 
-                      :limit => 5, 
-                      :order => 'lists.created_at DESC',
-                      :include => [:user])
+    @recent_lists = List.top5_recently_created
     
     @featured_list = List.find(:first,
                       :order => 'lists.created_at DESC',

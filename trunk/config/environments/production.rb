@@ -16,3 +16,7 @@ config.action_controller.perform_caching             = true
 
 # Disable delivery errors if you bad email addresses should just be ignored
 # config.action_mailer.raise_delivery_errors = false
+config.action_mailer.server_settings = {
+  :authentication => :plain,
+  :domain => 'alltimetop5.com'
+}

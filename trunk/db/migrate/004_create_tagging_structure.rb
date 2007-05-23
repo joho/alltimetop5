@@ -11,7 +11,7 @@ class CreateTaggingStructure < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :taggings
+    drop_table :lists_tags
     drop_table :tags
   end
 end

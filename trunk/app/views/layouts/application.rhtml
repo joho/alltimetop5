@@ -21,6 +21,8 @@
 	<% end %>
 	<%= yield %>
 </div>
+
+</div><!-- end of content wrap -->
 <div class="google-lower-banner">
 	<script type="text/javascript"><!--
 	google_ad_client = "pub-1593419454008545";
@@ -41,7 +43,11 @@
 	  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script>
 </div>
-</div><!-- end of content wrap -->
 <%= render :partial => 'common/footer' -%>
+<% if flash[:debug_info] %>
+<!-- 
+	Debugging information - submit to alltimetop5site@gmail.com, thanks.
+	<%= flash[:debug_info] %> -->
+<% end %>
 </body>
 </html>

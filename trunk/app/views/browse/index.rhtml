@@ -4,10 +4,15 @@
 <div class="browse-tag-cloud">
 <h3>You can find lists by our most popular tags:</h3>
 <ul class="cloud">
-<% List.cloud(@tags_count, @category_list) do |tag, category| %>
+<% List.cloud(@tags_count, List.tags_category_list) do |tag, category| %>
 	<li><%= link_to tag, {:tag_name => tag, :action => 'show_tag'} , :class => category -%></li>
 <% end %>
 </ul>
+<%= link_to 'all tags',
+		{:controller => 'tag',
+		:action => 'browse'},
+		:class => 'all-tags' -%>
+<div class="clear"></div>
 </div>
 <div class="browse-users">
 <h3>All time top 5 users</h3>

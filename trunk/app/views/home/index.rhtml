@@ -33,7 +33,7 @@
 	<h2 class="create5">Create 5</h2>
 	<% if @user %>
 	<p>Welcome back <strong><%= @user.username -%></strong>. <small>(<%= link_to 'logout', :controller => 'users', :action => 'logout' -%>)</small></p>
-		<p>You can create a new list or manage your existing ones <%= link_to 'here', :controller => 'lists' -%>.</p>
+		<p>You can create a new list or manage your existing ones at <%= link_to '"My alltimetop5"', :controller => 'lists' -%> or just jump to <%= link_to 'browsing other peoples lists', :controller => 'browse' -%>.</p>
 	<% else %>
 	<p><strong>Signup now... it's free</strong></p>
 	<p>To create your own list of your all time top 5 of anything

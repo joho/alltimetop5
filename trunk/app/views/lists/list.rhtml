@@ -5,8 +5,11 @@
 	<ul>
 		<li>You list can be about anything; but must be thematically linked</li>
 		<li>There can be 5 and only 5 items on your list</li>
+		<li>No offensive content</li>
 	</ul>
-	<p>Get started by creating your <%= link_to 'first list here', :action => 'new' -%>.</p>
+	<p>Get started by creating your <%= link_to 'first list here', 
+										{:action => 'new'},
+										:title => "it's easy, i swear" -%>.</p>
 <% else %>
 <p>You can create a <%= link_to 'new list here', :action => 'new' -%>.</p>
 <h3>Your current lists:</h3>
@@ -16,9 +19,17 @@
     <%= link_to "My All Time Top 5 #{h(list.title)}", :action => 'show', :id => list -%>
 	<%= list.created_at.to_date.to_s :short -%>
 	<div class="buttons">
-		<%= link_to "#{image_tag 'icons/group.png'}Share" , :action => 'share', :id => list -%>
-    	<%= link_to "#{image_tag 'icons/tag_blue.png'}Tag", :action => 'tag', :id => list %>
-    	<%= link_to "#{image_tag 'icons/delete.png'}Delete", { :action => 'destroy', :id => list }, :confirm => 'Do you really want to delete this?', :post => true %>
+		<%= link_to "#{image_tag 'icons/group.png'}Share" , 
+				{:action => 'share', :id => list},
+				:title => 'Email this list to a few of your friends' -%>
+    	<%= link_to "#{image_tag 'icons/tag_blue.png'}Tag",
+ 				{:action => 'tag', :id => list},
+ 				:title => 'Add tags (commonly known as keywords or categories) to this list'%>
+    	<%= link_to "#{image_tag 'icons/delete.png'}Delete", 
+			{ :action => 'destroy', :id => list }, 
+			:confirm => 'Do you really want to delete this?', 
+			:post => true,
+			:title => 'wipe this list of the face of the earth' %>
 	</div>
 </li>
 <% end %>

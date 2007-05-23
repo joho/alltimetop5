@@ -14,6 +14,8 @@
 	margin: 10px 30px 10px 10px;
 }
 
+#main-content h2 {width:490px;}
+
 #sidebar-right {float: right;}
 
 div.clear {clear: both;}
@@ -26,11 +28,12 @@ div.clear {clear: both;}
 .cloud a.five {font-size: 2em;}
 
 .manage-list .buttons{display:block; float:right;margin-bottom:3px;}
-.manage-list li {display:block; min-height:40px; border-top:1px solid #061D3E; 
+.manage-list li {display:block; min-height:40px; border-top:1px solid #CC6600; 
 	padding-top:5px;clear:both;}
 
 .browse-tag-cloud{border-top:1px solid #CC6600;
 	border-bottom:1px solid #CC6600;margin-bottom:10px;}
+.browse-tag-cloud .all-tags{display:block;float:right;}
 
 .browse-users {float:left;border-top:1px solid #CC6600;
 		border-bottom:1px solid #CC6600;width:300px;}
@@ -44,4 +47,9 @@ div.clear {clear: both;}
 .login-forms input {float:right;}
 .login-forms p {clear:both; width:420px;}
 .login-forms .buttons {clear:both;}
+
+.google-lower-banner {display:block;width:728px;height:90px;margin:0 auto;text-align:center;}
+
+.ListItemFormGroup{border-top:1px solid #CC6600;margin-top:10px;padding-top:3px;width:500px;}
+.ListItemFormGroup h4{float:left;padding-right:5px;}
 
