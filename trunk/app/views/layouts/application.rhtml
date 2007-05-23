@@ -10,26 +10,7 @@
 <%= render :partial => 'common/header' -%>
 
 <div id="content-wrap">
-<div id="sidebar-right">
-	<script type="text/javascript"><!--
-	google_ad_client = "pub-1593419454008545";
-	google_ad_width = 120;
-	google_ad_height = 600;
-	google_ad_format = "120x600_as";
-	google_ad_type = "text_image";
-	//2007-05-04: alltimetop5
-	google_ad_channel = "0008537347";
-	google_color_border = "336699";
-	google_color_bg = "FFFFFF";
-	google_color_link = "0000FF";
-	google_color_text = "000000";
-	google_color_url = "008000";
-	//-->
-	</script>
-	<script type="text/javascript"
-	  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-	</script>
-</div>
+
 <div id="main-content">
 	<% if flash[:notice] %>
 	<p style="color: green"><%= flash[:notice] %></p>
@@ -39,6 +20,26 @@
 	<p style="color: red"><%= flash[:error] %></p>
 	<% end %>
 	<%= yield %>
+</div>
+<div class="google-lower-banner">
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-1593419454008545";
+	google_ad_width = 728;
+	google_ad_height = 90;
+	google_ad_format = "728x90_as";
+	google_ad_type = "text_image";
+	//2007-05-23: alltimetop5
+	google_ad_channel = "0008537347";
+	google_color_border = "0066CC";
+	google_color_bg = "FFFFFF";
+	google_color_link = "0066CC";
+	google_color_text = "000000";
+	google_color_url = "008000";
+	//-->
+	</script>
+	<script type="text/javascript"
+	  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
 </div>
 </div><!-- end of content wrap -->
 <%= render :partial => 'common/footer' -%>

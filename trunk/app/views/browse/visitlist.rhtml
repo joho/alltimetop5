@@ -1,4 +1,4 @@
-<h1><%= h @user.username -%>'s All Time Top 5 <%= h @list.title -%></h1>
+<h2><%= h @user.username -%>'s All Time Top 5 <%= h @list.title -%></h2>
 <ol>
 	<% for list_item in @list.list_items %>
 		<li><strong><%= h list_item.title -%></strong>
@@ -9,7 +9,9 @@
 									:controller => 'browse',
 									:username => @user.username,
 									:action => 'visitlists' -%></p>
+<% unless @list.tags.empty? %>
 <p>This list was tagged with <%= @list.tags.collect { |tag| link_to(tag.name,
 									:controller => 'browse',
 									:action => 'show_tag',
 									:tag_name => tag.name)}.join(', ') -%></p>
+<% end %>
