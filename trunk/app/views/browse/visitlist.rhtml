@@ -47,10 +47,10 @@
 				:action => 'visitlist',
 				:id => rebuttal }.join(', ') -%>.
 </p>
+<% end %>
 <h4>More lists</h4>
 <p>View more lists created by <%= link_to @user.username,
 									:controller => 'browse',
 									:username => @user.username,
 									:action => 'visitlists' -%></p>
-<% end %>
 </div><!-- end of visitlist-right -->
