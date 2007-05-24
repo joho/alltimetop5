@@ -1,8 +1,16 @@
 <div class="header">
 	<h1><a href="/">alltimetop5</a></h1>
+	<span class="login-info">
+	<% if user = session[:user] %>
+		Logged in as <strong><%= user.username -%></strong>&nbsp;<small>(<%= link_to 'logout',
+															:controller => 'users',
+															:action => 'logout' -%>)
+	<% end %>
+	</span>
 	<ul>
 		<li class="my5"><%= link_to "My alltimetop5", :controller => "lists" -%></li>
 		<li class="browse"><%= link_to "Browse other lists", :controller => "browse" -%></li>
 	</ul>
+	
 	<div class="clear"></div>
 </div>

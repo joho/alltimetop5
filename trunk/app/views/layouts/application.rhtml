@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>alltimetop5 - <%= controller.action_name %></title>
+  <title><%= @pagetitle || "alltimetop5 - #{controller.action_name}" -%></title>
  	<%= stylesheet_link_tag 'scaffold' %>
 	<%= stylesheet_link_tag 'base' %>
 	<%= stylesheet_link_tag 'app' %>
@@ -13,11 +13,11 @@
 
 <div id="main-content">
 	<% if flash[:notice] %>
-	<p style="color: green"><%= flash[:notice] %></p>
+	<p class="flash-notice"><%= flash[:notice] %></p>
 	<% end %>
 
 	<% if flash[:error] %>
-	<p style="color: red"><%= flash[:error] %></p>
+	<p class="flash-error"><%= flash[:error] %></p>
 	<% end %>
 	<%= yield %>
 </div>

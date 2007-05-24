@@ -12,6 +12,7 @@ class ListsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
+    @pagetitle = 'My Alltimetop5'
     # TODO: replace with err.the_blog's pagination functionality
     user = session[:user]
     @lists = user.lists.find(:all, :order => 'lists.created_at DESC')
@@ -22,6 +23,7 @@ class ListsController < ApplicationController
   end
 
   def new
+    @pagetitle = 'Alltimetop5 - Create a new top 5 list'
     @list = List.new
     rebuttal_id = params[:id]
     if rebuttal_id
@@ -59,6 +61,7 @@ class ListsController < ApplicationController
   
   def share
     @list = List.find(params[:id])
+    @pagetitle = "Alltimetop5 - Share your all time top 5 #{@list.title} with the world"
   end
   
   def email
@@ -118,6 +121,7 @@ class ListsController < ApplicationController
   
   def tag
     @list = List.find(params[:id])
+    @pagetitle = "Alltimetop5 - Tag your all time top 5 #{@list.title} to make it easier to find"
     if request.post?
       @list.tag(params[:tag_list])
       flash[:notice] = "Successfully tagged all time top 5 #{@list.title}"

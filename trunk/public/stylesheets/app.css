@@ -1,24 +1,15 @@
-
 #center-wrap {text-align: center;}
+#content-wrap {width: 650px;margin: 0 auto;text-align: left;}
 
-#content-wrap
-{
-	width: 650px;
-	margin: 0 auto;
-	text-align: left;
-}
-
-#main-content
-{
-	min-height: 400px;
-	margin: 10px 30px 10px 10px;
-}
-
+#main-content {min-height: 300px;margin: 10px 30px 10px 10px;}
 #main-content h2 {width:490px;}
 
 #sidebar-right {float: right;}
 
 div.clear {clear: both;}
+
+p.flash-notice {color: green; border:1px dotted green;font-size: 1.4em;width:450px;padding-left:3px;}
+p.flash-error  {color: red; border:1px solid red;font-size: 1.4em;width:450px;padding-left:3px;}
 
 .cloud li {display:inline;list-style:none;}
 .cloud a.one {font-size: 0.8em;}
@@ -52,4 +43,7 @@ div.clear {clear: both;}
 
 .ListItemFormGroup{border-top:1px solid #CC6600;margin-top:10px;padding-top:3px;width:500px;}
 .ListItemFormGroup h4{float:left;padding-right:5px;}
+
+.visitlist-left {float:left;width:400px;}
+.visitlist-right {margin-top:40px;border:solid 1px #CC6600;float:right;display:block;width:200px;}
 

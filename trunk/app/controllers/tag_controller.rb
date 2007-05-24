@@ -11,6 +11,7 @@ class TagController < ApplicationController
   end
   
   def browse
+    @pagetitle = 'Alltimetop5 - Listing every tag there is'
     @category_list = %w(one two three four five)
     @tags_count = List.tags_count()
   end

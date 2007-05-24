@@ -11,7 +11,11 @@
 										{:action => 'new'},
 										:title => "it's easy, i swear" -%>.</p>
 <% else %>
-<p>You can create a <%= link_to 'new list here', :action => 'new' -%>.</p>
+<p>You can manage all your lists and create new ones from this page.</p>
+<div class="buttons">
+	<%= link_to "#{image_tag 'icons/page_edit.png'}new top 5", :action => 'new' -%>
+</div>
+<div class="clear"></div>
 <h3>Your current lists:</h3>
 <ul class="manage-list">
 <% for list in @lists %>

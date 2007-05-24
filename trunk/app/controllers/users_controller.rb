@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   end
   
   def login
+    @pagetitle = 'Alltimetop5 - Log in or create an account'
     # process the login request if a postback
     if request.post?
       @user = User.attempt_login(params[:user][:username], params[:user][:password])
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
         session[:user] = @user
         redirect_to_uri
       else
-        flash[:notice] = "There was a problem logging you in. Please check your username and password"
+        flash[:error] = "There was a problem logging you in. Please check your username and password"
         redirect_to :action => 'login'
       end
     else

@@ -42,8 +42,9 @@ class User < ActiveRecord::Base
       :include    => [:lists] )
   end
   
-  def self.top5
-    User.find(:all, :limit => 5)
+  def self.top5_by_total_list_views
+    User.find_by_sql('select users.* from users inner join lists on users.id = lists.user_id
+    group by lists.user_id order by sum(lists.fullviews) desc limit 5')
   end
   
   def disallowed_usernames

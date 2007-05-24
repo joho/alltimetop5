@@ -1,8 +1,13 @@
+<div class="visitlist-left">
 <h2><%= h @user.username -%>'s All Time Top 5 <%= h @list.title -%></h2>
 <% if @list.rebuts %>
 	<p>This list was created as a direct response to <%= h @list.rebuts.user.username -%>'s
-		<%= link_to "all time top 5 #{@list.rebuts.title}" -%>.</p>
+		<%= link_to "all time top 5 #{@list.rebuts.title}",
+		 				:username => @list.rebuts.user.username,
+						:action => 'visitlist',
+						:id => @list.rebuts -%>.</p>
 <% end %>
+<small>As of <%= @list.created_at.to_s :long -%></small>
 <ol>
 	<% for list_item in @list.list_items %>
 		<li><strong><%= h list_item.title -%></strong>
@@ -15,11 +20,15 @@
 <p><%= h @list.comment %></p>
 <% end %>
 
-<p>If you think that <%= h @user.username -%> has no idea and that this list is way off base you should <%= link_to 'respond to this list',
-			:controller => 'lists',
-			:action => 'new',
-			:id => @list -%>.</p>
+<div class="buttons">
+	<%= link_to "#{image_tag 'icons/thumb_down.png'}respond to this list",
+				:controller => 'lists',
+				:action => 'new',
+				:id => @list -%>
+</div>
 
+</div><!-- end visitlist-left -->
+<div class="visitlist-right">
 <% unless @list.tags.empty? %>
 <h4>Tags</h4>
 <p>This list was tagged with <%= @list.tags.collect { |tag| link_to(tag.name,
@@ -38,9 +47,10 @@
 				:action => 'visitlist',
 				:id => rebuttal }.join(', ') -%>.
 </p>
-<% end %>
-<h4>Other lists</h4>
+<h4>More lists</h4>
 <p>View more lists created by <%= link_to @user.username,
 									:controller => 'browse',
 									:username => @user.username,
 									:action => 'visitlists' -%></p>
+<% end %>
+</div><!-- end of visitlist-right -->
