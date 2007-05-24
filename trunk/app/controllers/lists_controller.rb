@@ -73,7 +73,7 @@ class ListsController < ApplicationController
       email_addresses = Array.new
       for i in 1..5
         email = params["email_address_#{i}"]
-        email_addresses << email unless email.nil?
+        email_addresses << email unless (email.nil? || email.empty?)
       end
       
       unless email_addresses.empty?
