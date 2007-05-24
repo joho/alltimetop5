@@ -55,6 +55,6 @@ require_gem 'acts_as_taggable'
 
 class ActiveRecord::Base
   def to_param
-    "#{self.id}-top5-#{self.title.gsub(/\s/, '-')}"
+    "#{self.id}-top5-#{self.title.gsub(/[^a-z0-9]+/i, '-')}"
   end
 end
