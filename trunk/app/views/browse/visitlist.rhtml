@@ -10,7 +10,7 @@
 	<% end %>
 </ol>
 
-<% if @list.comment || !@list.comment.empty? %>
+<% unless @list.comment.nil? || @list.comment.empty? %>
 <h3>Backstory</h3>
 <p><%= h @list.comment %></p>
 <% end %>

@@ -6,7 +6,7 @@
 	<%= stylesheet_link_tag 'app' %>
 </head>
 <body>
-
+<div class="wrap">
 <%= render :partial => 'common/header' -%>
 
 <div id="content-wrap">
@@ -43,11 +43,13 @@
 	  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script>
 </div>
+<div class="clear"></div>
 <%= render :partial => 'common/footer' -%>
 <% if flash[:debug_info] %>
 <!-- 
 	Debugging information - submit to alltimetop5site@gmail.com, thanks.
 	<%= flash[:debug_info] %> -->
 <% end %>
+</div>
 </body>
 </html>
