@@ -4,7 +4,7 @@
 	<% if user = session[:user] %>
 		Logged in as <strong><%= user.username -%></strong>&nbsp;<small>(<%= link_to 'logout',
 															:controller => 'users',
-															:action => 'logout' -%>)
+															:action => 'logout' -%>)</small>
 	<% end %>
 	</span>
 	<ul>

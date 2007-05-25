@@ -39,11 +39,9 @@ p.flash-error  {color: red; border:1px solid red;font-size: 1.4em;width:450px;pa
 .login-forms p {clear:both; width:420px;}
 .login-forms .buttons {clear:both;}
 
-.google-lower-banner {display:block;width:728px;height:90px;margin:0 auto;text-align:center;}
-
 .ListItemFormGroup{border-top:1px solid #CC6600;margin-top:10px;padding-top:3px;width:500px;}
 .ListItemFormGroup h4{float:left;padding-right:5px;}
 
 .visitlist-left {float:left;width:400px;}
-.visitlist-right {margin-top:40px;border:solid 1px #CC6600;float:right;display:block;width:200px;}
-
+.visitlist-right {margin-top:40px;border:solid 1px #CC6600;float:right;width:200px;}
+* html .visitlist-right {margin-left:-50px;}

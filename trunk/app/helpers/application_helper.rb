@@ -27,4 +27,11 @@ module ApplicationHelper
       model.errors.add key, message
     end
   end
+  
+  def truncate(string, len = 80)
+    if string and string.length > len and (add = string[len..-1].index(' '))
+      return string[0, len + add] + '&#8230;'
+    end
+    string
+  end 
 end

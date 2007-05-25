@@ -17,3 +17,5 @@ h2.Top5Tags{background-position:0 -368px;}
 /*custom classes*/
 ol.top5{border:1px solid #CC6600;margin-left:0;margin-right:2em;padding:0.5em 10px 0.5em 2em;}
 ol.top5 li strong{color:#CC6600;line-height:1.6;}
+
+.wrap {text-align:left;}

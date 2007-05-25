@@ -51,7 +51,7 @@ class ListsController < ApplicationController
     
     if @list.save
       flash[:notice] = "We've saved your all time top 5 #{@list.title}"
-      @list.tag(params[:tag_list])
+      @list.tag(params[:tag_list].sub(',', ''))
       redirect_to :action => 'list'
     else
       ApplicationHelper.tidy_error_messages(@list, ['list_items'])
@@ -81,7 +81,7 @@ class ListsController < ApplicationController
       
       unless email_addresses.empty?
         begin
-          ListEmailer.deliver_share(@list, email_addresses)
+          email_addresses.each { |e| ListEmailer.deliver_share(@list, e) }
           flash[:notice] = 'Your emails have been sent out. Feel free to send more!'
         rescue Exception => boom
           flash[:error] = 'Sorry, there was a hiccup trying to send mail, maybe try again later'
@@ -123,7 +123,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @pagetitle = "Alltimetop5 - Tag your all time top 5 #{@list.title} to make it easier to find"
     if request.post?
-      @list.tag(params[:tag_list])
+      @list.tag(params[:tag_list].sub(',', ''))
       flash[:notice] = "Successfully tagged all time top 5 #{@list.title}"
       redirect_to :action => 'list'
     end

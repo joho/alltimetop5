@@ -5,11 +5,15 @@
 </div>
 <div class="home-center">
 	<h2 class="featured5">Featured 5</h2>
-	<h3>All Time Top 5 <%= h @featured_list.title -%> by <%= @featured_list.user.username -%></h3>
+	<h3><%= link_to "All Time Top 5 #{h(@featured_list.title)}", 
+			:controller => 'browse',
+			:username => @featured_list.user.username,
+			:action => 'visitlist',
+			:id => @featured_list -%> by <%= @featured_list.user.username -%></h3>
 	<ol class="top5">
 	<% for list_item in @featured_list %>
 		<li><strong><%= h list_item.title -%></strong><br />
-			<%= h list_item.comment -%></li>
+			<%= truncate(h(list_item.comment)) -%></li>
 	<% end %>
 	</ol>
 	<h2 class="Browse5">Browse 5</h2>
