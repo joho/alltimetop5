@@ -1,0 +1,10 @@
+<h3>Admin: System info</h3>
+<%= link_to 'Back to admin', :action => 'index' -%>
+<h4>uptime</h4>
+<pre>
+<%= %x[uptime] %>
+</pre>
+<h4>ps -aux</h4>
+<pre>
+<%= %x[ps -aux] %>
+</pre>

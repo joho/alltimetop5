@@ -1,0 +1,8 @@
+<h3>Admin: All users</h3>
+<%= link_to 'Back to admin', :action => 'index' -%>
+<table border="1">
+	<tr><th>Title</th><th>Everything else</th></tr>
+	<% for user in @all_users %>
+		<tr><td><%= user.username -%></td><td><%= user.inspect %></td></tr>
+	<% end %>
+</table>
