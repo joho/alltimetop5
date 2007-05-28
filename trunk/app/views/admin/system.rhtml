@@ -2,9 +2,9 @@
 <%= link_to 'Back to admin', :action => 'index' -%>
 <h4>uptime</h4>
 <pre>
-<%= %x[uptime] %>
+<%= h(%x[uptime]) %>
 </pre>
 <h4>ps -aux</h4>
 <pre>
-<%= %x[ps -aux] %>
+<%= h(%x[ps -aux]) %>
 </pre>
