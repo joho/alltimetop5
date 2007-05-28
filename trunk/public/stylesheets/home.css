@@ -8,6 +8,10 @@ h2.search{background-position:0 -550px;}
 h2.featured5{background-position:-4px -255px;height:40px;}
 h2.Browse5{background-position:0 -315px;}
 h2.Top5Tags{background-position:0 -368px;}
+h2 a {display:block;height:30px;}
+h2.featured5 a {width:200px;height:40px;}
+h2.Browse5 a {width:140px;}
+h2.Top5Tags a {width:160px;}
 
 /*layout*/
 .home-left{float:left;width:270px;}

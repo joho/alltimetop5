@@ -28,9 +28,9 @@ module ApplicationHelper
     end
   end
   
-  def truncate(string, len = 80)
+  def truncate(string, len = 80, endstring = '&#8230;')
     if string and string.length > len and (add = string[len..-1].index(' '))
-      return string[0, len + add] + '&#8230;'
+      return string[0, len + add] + endstring
     end
     string
   end 

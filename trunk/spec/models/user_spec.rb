@@ -32,7 +32,7 @@ context "Creating a user" do
   specify "Can't create a user without confirming the password" do
     @user.attributes = valid_attributes.except :password_confirmation
     # This is a bit of a hack
-    #@user.password_confirmation = ""
+    @user.password_confirmation = ""
     @user.should_not be_valid
     @user.password_confirmation = @user.password
     @user.should be_valid
@@ -42,6 +42,21 @@ context "Creating a user" do
     @user.attributes = valid_attributes.except :email
     @user.should_not be_valid
     @user.email = 'jrbarton@gmail.com'
+    @user.should be_valid
+  end
+  
+  specify "Can't create a user with a crappy username" do
+    @user.attributes = valid_attributes.except :username
+    @user.username = 'split username'
+    @user.should_not be_valid
+    
+    @user.username = '$#!@#%^&'
+    @user.should_not be_valid
+    
+    @user.username = 'jbarton'
+    @user.should be_valid
+    
+    @user.username = 'j_barton'
     @user.should be_valid
   end
 end

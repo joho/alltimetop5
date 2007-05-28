@@ -4,19 +4,16 @@
 <p>Welcome to alltimetop5.com. This is the site for you to start and FINISH any arguments between you and your friends on anything you like. Best travel destinations? Go for it. Favourite B-grade horror films? Fine. Top 5 reasons your boss sucks - sure, just hope no one sends him a link.</p>
 </div>
 <div class="home-center">
-	<h2 class="featured5">Featured 5</h2>
-	<h3><%= link_to "All Time Top 5 #{h(@featured_list.title)}", 
-			:controller => 'browse',
-			:username => @featured_list.user.username,
-			:action => 'visitlist',
-			:id => @featured_list -%> by <%= @featured_list.user.username -%></h3>
+	<h2 class="featured5"><%= link_to 'Featured 5', @featured_list_url,
+								:title => "Our current featured list - the all time top 5 #{@featured_list.title}" -%></h2>
+	<h3>All time top 5 <%= link_to h(@featured_list.title), @featured_list_url -%> by <%= @featured_list.user.username -%></h3>
 	<ol class="top5">
 	<% for list_item in @featured_list %>
 		<li><strong><%= h list_item.title -%></strong><br />
-			<%= truncate(h(list_item.comment)) -%></li>
+			<%= truncate(h(list_item.comment), 100, link_to('&#8230;', @featured_list_url, :title => 'See the rest of this list')) -%></li>
 	<% end %>
 	</ol>
-	<h2 class="Browse5">Browse 5</h2>
+	<h2 class="Browse5"><%= link_to 'Browse 5', {:controller => 'browse'}, :title => 'Browse other lists created by our users' -%></h2>
 	<ul>
 		<% for list in @recent_lists %>
 			<li><%= link_to "All time top 5 #{h list.title} by #{h list.user.username}",
@@ -26,7 +23,9 @@
 				:id => list -%></li>
 		<% end %>
 	</ul>
-	<h2 class="Top5Tags">Top 5 Tags</h2>
+	<h2 class="Top5Tags"><%= link_to 'Top 5 Tags', 
+							{:controller => 'tag', :action => 'browse'},
+							:title => 'See all the tags(categories) we have on the site' -%></h2>
 	<p><%= @top_tags.collect { |tag, value| link_to tag, {
 		:tag_name => tag, 
 		:action => 'show_tag',

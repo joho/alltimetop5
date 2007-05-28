@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_confirmation_of :password
   validates_presence_of :username, :email, :password
+  #validates_format_of :username, :with => /[a-zA-Z0-9_]{3,25}/, :message => 'Sorry, your username must be alphanumeric and at least 3 characters long'
   
   def before_create
     self.hashed_password = User.hash_password(self.password)

@@ -4,13 +4,13 @@ Here's a preview of their list:
 
 <%= @list.user.username -%>'s All Time Top 5 <%= @list.title %>
 
-1.	...
-2.	...
+1.	???
+2.	???
 3.	<%= @list.list_items[2].title %>
 4.	<%= @list.list_items[3].title %>
 5.	<%= @list.list_items[4].title %>
 
-If you want to see what came in at the top just visit <%= 'http://alltimetop5.com' +
+If you want to see what came in at the top and read a little backstory just visit <%= 'http://alltimetop5.com' +
 	url_for(:controller => 'browse',
 		:username => @list.user.username,
 		:action => 'visitlist',
@@ -19,4 +19,4 @@ If you want to see what came in at the top just visit <%= 'http://alltimetop5.co
 
 ---
 
-<http://alltimetop5.com> - Your desert island friends
+<http://alltimetop5.com> - Your desert island friend

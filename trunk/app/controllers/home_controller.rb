@@ -8,6 +8,11 @@ class HomeController < ApplicationController
                       :order => 'lists.created_at DESC',
                       :include => [:user, :list_items])
                       
+    @featured_list_url = url_for({:controller => 'browse',
+                			:username => @featured_list.user.username,
+                			:action => 'visitlist',
+                			:id => @featured_list})
+                      
     @user = session[:user]
   end
   
