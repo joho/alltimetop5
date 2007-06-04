@@ -6,6 +6,7 @@
 	<ul>
 		<% for list in @lists %>
 			<li><%= link_to "All time top 5 <strong>#{list.title}</strong>", 
+						:controller => 'browse',
 						:username => list.user.username,
 						:action => 'visitlist',
 						:id => list -%> by <%= list.user.username -%></li>

@@ -1,7 +1,7 @@
 class BrowseController < ApplicationController
   def index
     @pagetitle = 'Browsing Alltimetop5'
-    @tags_count = List.tags_count(:limit => 20)
+    @tags_count = List.tags_count(:limit => 50)
     
     @top_users = User.top5_by_total_list_views
     
@@ -39,6 +39,8 @@ class BrowseController < ApplicationController
   end
   
   def visitlist
+    @current_user = session[:user]
+    
     @user = User.find_by_username(params[:username])
     
     @list = List.find(params[:id], :include => [:list_items])

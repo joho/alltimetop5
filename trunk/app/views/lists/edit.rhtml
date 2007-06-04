@@ -1,8 +1,12 @@
-<h1>Editing list</h1>
-<%= start_form_tag :action => 'update', :id => @list %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
-
-<%= link_to 'Show', :action => 'show', :id => @list %> |
-<%= link_to 'Back', :action => 'list' %>
+<%= javascript_include_tag 'prototype' %>
+<h2>Edit your list</h2>
+<div class="edit-content">
+	<p class="edit-preamble">To edit any text click on the nearest <%= image_tag 'icons/page_edit.png' -%> icon. Use the <%= image_tag 'icons/arrow_up.png' -%> &amp; <%= image_tag 'icons/arrow_down.png' -%> arrows to re-order your list. Clicking <%= image_tag 'icons/cancel.png' -%> will delete the entry from your list.</p>
+	<div id="list-header">
+		<%= render :partial => 'ajax_view', :locals => {:list => @list} %>
+	</div>
+	<div id="list">
+		<%= render :partial => 'list_items/all_items', :locals => {:list_items => @list.list_items, :list_id => @list.id }%>
+	</div>
+</div>
+	

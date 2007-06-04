@@ -1,0 +1,19 @@
+<h4><%= list_item.rank -%>.</h4>
+<%= error_messages_for 'list_item' %>
+<% remote_form_for :list_item, 
+				:url => {:controller => 'list_items', :action => 'edit', :id => list_item},
+				:update => "list_item_#{list_item.rank}" do |form| %>
+<label for="list_item[title]">Title</label><%= form.text_field :title, :size => 40 -%><br />
+<label for="list_item[comment]">Comment</label><%= form.text_area :comment, :rows => 3 -%>
+<div class="buttons">
+	<button type="submit">
+		<%= image_tag 'icons/accept' -%>Save
+	</button>
+	<%= link_to_remote( "#{image_tag('icons/cancel.png')}Cancel",
+			:url => {	:controler => 'list_items',
+						:action => 'ajax_view',
+						:id => list_item },
+			:method => :get,
+			:update => "list_item_#{list_item.rank}")%>
+</div>
+<% end %>

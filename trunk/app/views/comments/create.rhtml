@@ -1,0 +1,2 @@
+new Insertion.Before('new_comment', '<%= escape_javascript(render :partial => 'comments/comment', :locals => {:comment => @comment}) -%>');
+$('new_comment').innerHTML = "<%= escape_javascript('<p>Thanks for commenting! Refresh the page to see the latest comments.</p>' + render(:partial => 'comments/create', :locals => {:list => @list, :comment => nil})) -%>";

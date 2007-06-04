@@ -2,7 +2,13 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 8) do
+ActiveRecord::Schema.define(:version => 10) do
+
+  create_table "comments", :force => true do |t|
+    t.column "list_id", :integer, :null => false
+    t.column "user_id", :integer, :null => false
+    t.column "text",    :text
+  end
 
   create_table "list_items", :force => true do |t|
     t.column "title",   :string,  :default => "", :null => false
@@ -12,13 +18,14 @@ ActiveRecord::Schema.define(:version => 8) do
   end
 
   create_table "lists", :force => true do |t|
-    t.column "title",      :string,   :default => "", :null => false
-    t.column "user_id",    :integer,                  :null => false
+    t.column "title",      :string,   :default => "",   :null => false
+    t.column "user_id",    :integer,                    :null => false
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "fullviews",  :integer,  :default => 0,  :null => false
+    t.column "fullviews",  :integer,  :default => 0,    :null => false
     t.column "comment",    :string
     t.column "rebuts_id",  :integer
+    t.column "published",  :boolean,  :default => true
   end
 
   create_table "lists_tags", :id => false, :force => true do |t|

@@ -1,0 +1,4 @@
+<dl>
+	<dt><strong><%= h(comment.user.username) %>:</strong><br /><%= distance_of_time_in_words_to_now comment.created_at -%> ago</dt>
+	<dd><%= h(comment.text) %></dd>
+</dl>

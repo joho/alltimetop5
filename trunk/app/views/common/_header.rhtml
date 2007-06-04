@@ -2,7 +2,7 @@
 	<h1><a href="/" title="Back to home">alltimetop5</a></h1>
 	<span class="login-info">
 	<% if user = session[:user] %>
-		Logged in as <strong><%= user.username -%></strong>&nbsp;<small>(<%= link_to 'logout',
+		Welcome back <strong><%= user.username -%></strong>&nbsp;<small>(<%= link_to 'logout',
 															:controller => 'users',
 															:action => 'logout' -%>)</small>
 	<% end %>

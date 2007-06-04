@@ -1,5 +1,6 @@
 class ListItem < ActiveRecord::Base
   belongs_to :list
+  acts_as_list :scope => :list_id, :column => :rank
   
   # validates_presence_of :list_id
   

@@ -1,5 +1,8 @@
+<%= javascript_include_tag 'prototype' -%>
+<h2 class="list-heading"><%= h @user.username -%>'s All Time Top 5 <%= h @list.title -%></h2>
 <div class="visitlist-left">
-<h2><%= h @user.username -%>'s All Time Top 5 <%= h @list.title -%></h2>
+<small>As of <%= @list.created_at.to_s :long -%></small>
+
 <% if @list.rebuts %>
 	<p>This list was created as a direct response to <%= h @list.rebuts.user.username -%>'s
 		<%= link_to "all time top 5 #{@list.rebuts.title}",
@@ -7,7 +10,12 @@
 						:action => 'visitlist',
 						:id => @list.rebuts -%>.</p>
 <% end %>
-<small>As of <%= @list.created_at.to_s :long -%></small>
+
+<% unless @list.comment.nil? || @list.comment.empty? %>
+<h3>Backstory</h3>
+<p><%= h @list.comment %></p>
+<% end %>
+
 <ol>
 	<% for list_item in @list.list_items %>
 		<li><strong><%= h list_item.title -%></strong>
@@ -15,42 +23,87 @@
 	<% end %>
 </ol>
 
-<% unless @list.comment.nil? || @list.comment.empty? %>
-<h3>Backstory</h3>
-<p><%= h @list.comment %></p>
-<% end %>
-
 <div class="buttons">
-	<%= link_to "#{image_tag 'icons/thumb_down.png'}respond to this list",
-				:controller => 'lists',
-				:action => 'new',
-				:id => @list -%>
+	<%  # TODO: Uncomment when i have a working rebuttal page
+		#<%= link_to "#{image_tag 'icons/page_edit.png'}Write your top 5",
+		#		:controller => 'lists',
+		#		:action => 'new',
+		#		:id => @list
+	%>
+	<% if @current_user %>
+		<a href="#comment"><%= image_tag 'icons/comment.png' -%>Comment</a>
+	<% else %>
+		<%= link_to "#{image_tag 'icons/comment.png'}Comment", :controller => 'comments', :action => 'login', :id => @list -%>
+	<% end %>
 </div>
+<div class="clear"></div>
 
+<% if @current_user || !@list.comments.empty? %>
+	<%= render :partial => 'adspots/banner' %>
+	<h3>Comments</h3>
+	<div class="comments">
+	<% unless @list.comments.empty? %>
+		<% for comment in @list.comments %>
+			<%= render :partial => 'comments/comment', :locals => {:comment => comment} %>
+		<% end %>
+		<div class="clear"></div>
+	<% end %>
+
+	<% if @current_user %>
+		<a name="comment"></a>
+		<div id="new_comment">
+		<%= render :partial => 'comments/create', :locals => {:list => @list, :comment => nil} %>
+		</div>
+	<% end %>
+	</div>
+<% end %>
 </div><!-- end visitlist-left -->
 <div class="visitlist-right">
-<% unless @list.tags.empty? %>
-<h4>Tags</h4>
-<p>This list was tagged with <%= @list.tags.collect { |tag| link_to(tag.name,
-									:controller => 'browse',
-									:action => 'show_tag',
-									:tag_name => tag.name)}.join(', ') -%></p>
-<% end %>
+	<div class="sidebox">
+		<h3>Sharing</h3>
+		<ul>
+			<!-- <li><a href="TODO"><%= image_tag 'icons/email_go.png' -%>Email</a></li> -->
+			<li>
+				<script type="text/javascript">
+					digg_skin = 'compact';
+				</script>
+				<script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
+			</li>
+			<li>
+				<script>reddit_title='The all time top 5 <%= @list.title -%>'</script>
+				<script language="javascript" src="http://reddit.com/button.js?t=1"></script>
+			</li>
+		</ul>
+		<% unless @list.tags.empty? %>
+		<h4>Tags</h4>
+		<p>This list was tagged with <%= @list.tags.collect { |tag| link_to(tag.name,
+											:controller => 'browse',
+											:action => 'show_tag',
+											:tag_name => tag.name)}.join(', ') -%></p>
+		<% end %>
 
-<% unless @rebuttals.empty? %>
-<h4>Responses</h4>
-<p>This list has been responded to by
-	<%= @rebuttals.collect { |rebuttal|
-		 	link_to h(rebuttal.user.username),
-				:controller => 'browse',
-				:username => rebuttal.user.username,
-				:action => 'visitlist',
-				:id => rebuttal }.join(', ') -%>.
-</p>
-<% end %>
-<h4>More lists</h4>
-<p>View more lists created by <%= link_to @user.username,
-									:controller => 'browse',
-									:username => @user.username,
-									:action => 'visitlists' -%></p>
+		<% unless @rebuttals.empty? %>
+		<h4>Responses</h4>
+		<p>This list has been responded to by
+			<%= @rebuttals.collect { |rebuttal|
+				 	link_to h(rebuttal.user.username),
+						:controller => 'browse',
+						:username => rebuttal.user.username,
+						:action => 'visitlist',
+						:id => rebuttal }.join(', ') -%>.
+		</p>
+		<% end %>
+		<h4>More lists</h4>
+		<p>View more lists created by <%= link_to @user.username,
+											:controller => 'browse',
+											:username => @user.username,
+											:action => 'visitlists' -%></p>
+	</div>
+	<% unless @list.comments.empty? %>
+		<%= if @list.comments.size < 5
+				render :partial => 'adspots/vertical_banner'
+			else
+				render :partial => 'adspots/wide_skyscraper'
+			end %>
+	<% end %>
 </div><!-- end of visitlist-right -->

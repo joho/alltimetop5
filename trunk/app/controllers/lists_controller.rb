@@ -19,10 +19,14 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id], :include => [:list_items])
+    @list = List.find(params[:id], :include => [:list_items, :user])
+    redirect_to(:controller => 'browse',
+                :username => @list.user.username,
+                :action => 'visitlist',
+                :id => @list) if session[:user].id != @list.user.id
   end
 
-  def new
+  def old_new
     @pagetitle = 'Alltimetop5 - Create a new top 5 list'
     @list = List.new
     rebuttal_id = params[:id]
@@ -34,28 +38,39 @@ class ListsController < ApplicationController
     end
   end
 
-  def create
-    params[:list][:comment] = nil if params[:list][:comment].empty?
-    @list = List.new(params[:list])
-    @list.user = session[:user]
-    
-    # dynamically load up all 5 of the list items
-    for position in 1..5
-      list_item_hash = params["list_item#{position}"]
-      list_item = ListItem.new
-      list_item.title = list_item_hash[:title]
-      list_item.comment = list_item_hash[:comment]
-      list_item.rank = position
-      @list.list_items << list_item
-    end
-    
-    if @list.save
-      flash[:notice] = "We've saved your all time top 5 #{@list.title}"
-      @list.tag(params[:tag_list].sub(',', ''))
-      redirect_to :action => 'list'
+  def old_create
+    if request.xhr?
+      # handle the ajax request to create
+      @list = List.new(params[:list])
+      if @list.save
+        # render the js to update stuff properly
+      else
+        # render something with the error message
+      end
     else
-      ApplicationHelper.tidy_error_messages(@list, ['list_items'])
-      render :action => 'new'
+      # revert to the old form's behaivour
+      params[:list][:comment] = nil if params[:list][:comment].empty?
+      @list = List.new(params[:list])
+      @list.user = session[:user]
+    
+      # dynamically load up all 5 of the list items
+      for position in 1..5
+        list_item_hash = params["list_item#{position}"]
+        list_item = ListItem.new
+        list_item.title = list_item_hash[:title]
+        list_item.comment = list_item_hash[:comment]
+        list_item.rank = position
+        @list.list_items << list_item
+      end
+    
+      if @list.save
+        flash[:notice] = "We've saved your all time top 5 #{@list.title}"
+        @list.tag(params[:tag_list].sub(',', ''))
+        redirect_to :action => 'list'
+      else
+        ApplicationHelper.tidy_error_messages(@list, ['list_items'])
+        render :action => 'new'
+      end
     end
   end
   
@@ -96,11 +111,6 @@ class ListsController < ApplicationController
     redirect_to :action => 'share', :id => params[:id]
   end
 
-  def edit
-    @user = session[:user] unless session[:user].nil?
-    @list = List.find(params[:id])
-  end
-
   def update
     @list = List.find(params[:id])
     if @list.update_attributes(params[:list])
@@ -127,5 +137,55 @@ class ListsController < ApplicationController
       flash[:notice] = "Successfully tagged all time top 5 #{@list.title}"
       redirect_to :action => 'list'
     end
+  end
+  
+  def edit
+    @user = session[:user] unless session[:user].nil?
+    @list = List.find(params[:id], :include => [:list_items, :user])
+    @pagetitle = "Alltimetop5 - Editing your top 5 #{@list.title}"
+    
+    if @user.id != @list.user.id
+      flash[:error] = "Sorry, you can't edit that list"
+      redirect_to :controller => 'lists'
+      return
+    end
+    
+    @new_list_item = nil
+    if @list.list_items.size < 5
+      @new_list_item = ListItem.new
+      @new_list_item.rank = @list.list_items.size
+      @new_list_item.list_id = @list.id
+    end
+  end
+  
+  def ajax_edit
+    @list = List.find(params[:id])
+    
+    if request.post?
+      if @list.update_attributes(params[:list])
+        redirect_to :controller => 'lists', :action => 'ajax_view', :id => @list
+        return
+      end
+    end
+    render :layout => false
+  end
+  
+  def ajax_view
+    @list = List.find(params[:id])
+    render :layout => false
+  end
+  
+  def new
+    @pagetitle = 'Alltimetop5 - Write a list'
+    @list = List.new(:published => false)
+  end
+  
+  def create
+    @list = List.new(params[:list])
+    @list.published = false
+    @list.user = session[:user]
+    @all_ok = @list.save
+    
+    render :layout => false;
   end
 end

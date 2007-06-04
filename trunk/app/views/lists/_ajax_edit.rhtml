@@ -1,0 +1,23 @@
+<%= error_messages_for 'list' %>
+<%  new_params ||= nil
+	default_params = {:url => {	:controller => 'lists',
+			 		:action => action || 'ajax_edit',
+					:id => (new_list ? nil : list) },
+		:update => 'list-header'} %>
+<% remote_form_for :list, (new_params || default_params) do |form| %>
+<label for="list[title]">All time top 5</label><%= form.text_field :title %><br />
+<label for="list[comment]">Backstory</label><%= form.text_area :comment, :rows => 4 %>
+<div class="buttons">
+	<button type="submit">
+		<%= image_tag 'icons/accept.png' -%>Save
+	</button>
+	<%= unless new_list
+			link_to_remote( "#{image_tag('icons/cancel.png')}Cancel",
+				:url =>	{	:controller => 'lists',
+							:action => 'ajax_view',
+							:id => list },
+				:method => :get,
+				:update => 'list-header')
+		end %>
+</div>
+<% end %>

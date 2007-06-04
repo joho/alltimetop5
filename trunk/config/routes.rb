@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'sharing/:username/:action/:id', :controller => 'browse'
 
   map.connect ':controller/tags/:tag_name', :action => 'show_tag'
+  
+  map.connent 'sharing/:username/:list_id/:action', :controller => 'comments'
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'

@@ -22,7 +22,13 @@
 <li>
     <%= link_to "My All Time Top 5 #{h(list.title)}", :action => 'show', :id => list -%>
 	<%= list.created_at.to_date.to_s :short -%>
+	<% unless list.published %>
+		<strong>INCOMPLETE</strong> <%= link_to 'finish it here', :action => 'edit', :id => list -%>
+	<% end %>
 	<div class="buttons">
+		<%= link_to "#{image_tag 'icons/page_edit.png'}Edit",
+				{:action => 'edit', :id => list},
+				:title => 'Edit your list' -%>
 		<%= link_to "#{image_tag 'icons/group.png'}Share" , 
 				{:action => 'share', :id => list},
 				:title => 'Email this list to a few of your friends' -%>
@@ -32,7 +38,7 @@
     	<%= link_to "#{image_tag 'icons/delete.png'}Delete", 
 			{ :action => 'destroy', :id => list }, 
 			:confirm => 'Do you really want to delete this?', 
-			:post => true,
+			:method => :post,
 			:title => 'wipe this list of the face of the earth' %>
 	</div>
 </li>

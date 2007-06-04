@@ -1,0 +1,12 @@
+<% remote_form_for :comment, 
+		:url => {:controller => 'comments', :action => 'create', :id => list},
+		:complete => 'eval(request.responseText)' do |form| %>
+<%= error_messages_for :comment %>
+<label for="comment_text">Add your comment</label><br />
+<%= form.text_area :text, :rows => 4 -%>
+<div class="buttons">
+<button type="submit">
+	<%= image_tag 'icons/accept.png' -%>Save!
+</button>
+</div>
+<% end %>

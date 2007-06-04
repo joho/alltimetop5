@@ -1,0 +1,4 @@
+$('<%= "list_item_#{@moved_up.rank}" -%>').innerHTML = "<%= escape_javascript( render :partial => 'list_items/view_list_item',
+ 	:locals => { :list_item => @moved_up }) -%>";
+$('<%= "list_item_#{@moved_down.rank}" -%>').innerHTML = "<%= escape_javascript( render :partial => 'list_items/view_list_item',
+	 	:locals => { :list_item => @moved_down }) -%>";
