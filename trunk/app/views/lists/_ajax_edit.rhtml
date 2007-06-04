@@ -1,5 +1,6 @@
 <%= error_messages_for 'list' %>
-<%  new_params ||= nil
+<%  action ||= nil
+	new_params ||= nil
 	default_params = {:url => {	:controller => 'lists',
 			 		:action => action || 'ajax_edit',
 					:id => (new_list ? nil : list) },
