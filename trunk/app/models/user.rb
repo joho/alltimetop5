@@ -2,6 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   has_many :lists
+  has_one :profile
   
   attr_accessor :password, :password_confirmation
   attr_accessible :username, :email, :password, :password_confirmation
@@ -21,6 +22,16 @@ class User < ActiveRecord::Base
   
   def validate
     errors.add('username', "Sorry, that username isn't allowed") if disallowed_usernames.include? username
+  end
+  
+  def set_new_password
+    new_password = ''
+    6.times { new_password += sprintf("%c", rand(26) + 97 ) }
+    
+    self.hashed_password = User.hash_password(new_password)
+    self.save
+    
+    new_password 
   end
   
   def self.hash_password(password)
@@ -49,6 +60,6 @@ class User < ActiveRecord::Base
   end
   
   def disallowed_usernames
-    %w(root admin alltimetop5 adminstrator)
+    %w(root admin alltimetop5 adminstrator cock dick fag dickhead shithead)
   end
 end

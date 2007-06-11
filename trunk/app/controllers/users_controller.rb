@@ -50,6 +50,28 @@ class UsersController < ApplicationController
     redirect_to :action => 'login'
   end
   
+  def forgot_password
+    if request.post?
+      @email_address = params[:email]
+      user = User.find_by_email(@email_address)
+      
+      unless user
+        flash[:error] = "Sorry we couldn't find a user with that email address"
+        return
+      end
+      
+      new_password = user.set_new_password
+      
+      begin
+        UserMailer.deliver_forgot_password(user, new_password)
+        flash[:notice] = "We have emailed you your login details."
+        redirect_to :action => 'login'
+      rescue
+        flash[:error] = "There was a problem sending you your password. Please try again later."
+      end
+    end
+  end
+  
   private 
   def redirect_to_uri
     uri = session[:original_uri]
