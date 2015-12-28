@@ -1,7 +1,0 @@
-<% remote_form_for :list, 
-	:url => {:action => 'create'},
-	:complete => 'eval(response.responseText)' do |form| %>
-<%= error_messages_for :list %>
-<label for="list_title">My all time top 5</label>
-<%= form.text_field :title -%>
-<% end %>

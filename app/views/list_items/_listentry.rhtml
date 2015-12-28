@@ -1,8 +1,0 @@
-<div class="ListItemFormGroup">
-<%= error_messages_for "list_item#{position}" %>
-<h4><%= position -%>.</h4>
-<%= text_field "list_item#{position}", 'title' -%><%= image_tag 'icons/asterisk_orange.png' -%>
-<br />
-<p><label for=<%= "list_item#{position}_comment" -%>>and it gets this spot because:</label><br/>
-<%= text_area "list_item#{position}", 'comment', :cols => "60", :rows => "4"  %></p>
-</div>

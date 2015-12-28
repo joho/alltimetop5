@@ -1,8 +1,0 @@
-<h3>Admin: all lists</h3>
-<%= link_to 'Back to admin', :action => 'index' -%>
-<table border="1">
-	<tr><th>Title</th><th>Everything else</th></tr>
-	<% for list in @all_lists %>
-		<tr><td><%= link_to list.title, :action => 'viewlist', :id => list -%></td><td><%= list.inspect %></td></tr>
-	<% end %>
-</table>

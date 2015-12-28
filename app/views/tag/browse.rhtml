@@ -1,9 +1,0 @@
-<h2>All tags</h2>
-<p>Tags are just another word for categories or keywords, the difference is that they
-	are all user generated. Here is the complete list of all tags created so far.
-	The bigger the font, the more often the tag is used.</p>
-<ul class="cloud">
-	<% List.cloud(@tags_count, List.tags_category_list) do |tag, category| %>
-		<li><%= link_to tag, {:tag_name => tag, :action => 'show_tag', :controller => 'browse'} , :class => category -%></li>
-	<% end %>
-</ul>
