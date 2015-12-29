@@ -1,4 +1,4 @@
-var should = require('should');
+import should from 'should';
 
 describe('alwaysTrue', function() {
   it('is always true', function() {
