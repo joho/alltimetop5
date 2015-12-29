@@ -7,7 +7,7 @@ IFS=$'\n\t'
 git checkout deploy
 git rebase --strategy=ours master
 
-node_modules/.bin/webpack -p
+(cd assets && node_modules/.bin/webpack -p)
 
 git add -f public/build
 
