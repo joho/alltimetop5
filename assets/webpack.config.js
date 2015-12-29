@@ -10,9 +10,9 @@ const sassLoaders = [
 module.exports = {
     resolve: {
         extensions: ['', '.js', '.jsx', '.scss'],
-        modulesDirectories: ["./src", "../node_modules"]
+        modulesDirectories: ["./src", "./node_modules"]
     },
-    entry: './src/app.js',
+    entry: './src/app.jsx',
     output: {
         path: '../public/build/',
         publicPath: '/build/',
@@ -21,7 +21,11 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.(s)?css$/, loader: ExtractTextPlugin.extract('style-loader', sassLoaders.join("!")) },
-            { test: /\.js(x)?$/, loader: require.resolve('babel-loader') },
+            {
+              test: /\.jsx?$/,
+              exclude: /(node_modules|bower_components)/,
+              loader: 'babel',
+              query: { presets: ['react', 'es2015'] } },
         ]
     },
     plugins: [

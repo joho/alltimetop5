@@ -13,6 +13,8 @@
   "dependencies": {
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^0.9.1",
     "fluxible": "^1.0.3",
