@@ -35,6 +35,5 @@ module.exports = {
         colors: true
     },
     devtool: 'source-map',
-    watch: true,
     keepalive: true
 };
