@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "My very first rails app shall ride again as a react/fluxible/rails-api monstrosity.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/**/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,10 @@
     "react-router": "^1.0.3",
     "sass-loader": "^3.1.2",
     "webpack": "^1.12.9"
+  },
+  "devDependencies": {
+    "jsdom": "^7.2.2",
+    "mocha": "^2.3.4",
+    "should": "^8.0.2"
   }
 }
