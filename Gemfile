@@ -10,6 +10,9 @@ gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma'
 
+# Heroku stuff
+gem 'rails_12factor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
