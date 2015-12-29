@@ -1,6 +1,9 @@
 import React from 'react';
-import should from 'should';
 import { createRenderer } from 'react-addons-test-utils';
+
+import expect from 'expect';
+import expectJSX from 'expect-jsx';
+expect.extend(expectJSX);
 
 import Nav from 'components/Nav';
 
@@ -12,6 +15,6 @@ describe('Nav', () => {
     let actualElement = renderer.getRenderOutput();
     let expectedElement = <h1>alltimetop5</h1>;
 
-    should(actualElement).equal(expectedElement);
+    expect(actualElement).toEqualJSX(expectedElement);
   });
 });

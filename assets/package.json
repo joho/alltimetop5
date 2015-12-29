@@ -28,9 +28,10 @@
   },
   "devDependencies": {
     "babel-register": "^6.3.13",
+    "expect": "^1.13.4",
+    "expect-jsx": "^2.2.1",
     "jsdom": "^7.2.2",
     "mocha": "^2.3.4",
-    "react-addons-test-utils": "^0.14.3",
-    "should": "^8.0.2"
+    "react-addons-test-utils": "^0.14.3"
   }
 }
