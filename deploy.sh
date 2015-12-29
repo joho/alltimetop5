@@ -13,6 +13,6 @@ git add -f public/build
 
 git commit --amend --no-edit
 
-git push heroku deploy:master
+git push -f heroku deploy:master
 
 git checkout master
