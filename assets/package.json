@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "My very first rails app shall ride again as a react/fluxible/rails-api monstrosity.",
   "scripts": {
-    "test": "mocha test/**/*.spec.js"
+    "test": "NODE_PATH=.:./src mocha test/**/*.spec.js"
   },
   "repository": {
     "type": "git",
