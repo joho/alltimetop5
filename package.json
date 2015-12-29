@@ -1,0 +1,23 @@
+{
+  "name": "alltimetop5",
+  "version": "1.0.0",
+  "description": "My very first rails app shall ride again as a react/fluxible/rails-api monstrosity.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joho/alltimetop5.git"
+  },
+  "author": "John Barton <jrbarton@gmail.com> (http://whoisjohnbarton.com/)",
+  "dependencies": {
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.0",
+    "fluxible": "^1.0.3",
+    "history": "^1.17.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-router": "^1.0.3",
+    "webpack": "^1.12.9"
+  }
+}
