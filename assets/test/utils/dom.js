@@ -1,4 +1,3 @@
-"use strict";
 var jsdom = require('jsdom')
 
 // setup the simplest document possible
@@ -25,3 +24,10 @@ function propagateToGlobal (window) {
     global[key] = window[key]
   }
 }
+
+// setup expect and expect jsx just once
+import expect from 'expect';
+import expectJSX from 'expect-jsx';
+expect.extend(expectJSX);
+
+global.expect = expect;

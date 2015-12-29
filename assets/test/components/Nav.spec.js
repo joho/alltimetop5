@@ -1,10 +1,6 @@
 import React from 'react';
 import { createRenderer } from 'react-addons-test-utils';
 
-import expect from 'expect';
-import expectJSX from 'expect-jsx';
-expect.extend(expectJSX);
-
 import Nav from 'components/Nav';
 
 describe('Nav', () => {
