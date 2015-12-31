@@ -1,8 +1,9 @@
 import React from 'react';
 
+import {contextTypes} from 'fluxible';
 // import {connectToStores, provideContext} from 'fluxible-addons-react';
 
-class Nav extends React.Component {
+class AppContainer extends React.Component {
 
   render() {
     return(
@@ -15,11 +16,6 @@ class Nav extends React.Component {
 
 }
 
-// Nav.contextTypes = {
-//   getStore: React.PropTypes.func,
-//   executeAction: React.PropTypes.func
-// };
-//
-// export default provideContext(Nav);
-//
-export default Nav;
+AppContainer.contextTypes = contextTypes;
+
+export default AppContainer;

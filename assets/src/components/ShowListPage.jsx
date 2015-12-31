@@ -1,7 +1,9 @@
 import React from 'react';
+import { contextTypes } from 'fluxible';
+
 import { Link } from 'react-router';
 
-export default class ShowListPage extends React.Component {
+class ShowListPage extends React.Component {
   render() {
     return(
         <div>
@@ -18,3 +20,7 @@ export default class ShowListPage extends React.Component {
     );
   }
 }
+
+ShowListPage.contextTypes = contextTypes;
+
+export default ShowListPage;
