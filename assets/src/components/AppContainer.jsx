@@ -5,14 +5,14 @@ import {contextTypes} from 'fluxible';
 
 class AppContainer extends React.Component {
 
-  render() {
-    return(
-      <div>
-        <h1>alltimetop5</h1>
-        {this.props.children}
-      </div>
-    );
-  }
+    render() {
+        return(
+                <div>
+                <h1>alltimetop5</h1>
+                {this.props.children}
+                </div>
+              );
+    }
 
 }
 
