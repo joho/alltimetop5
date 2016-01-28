@@ -11,6 +11,7 @@ import AppContainer from './components/AppContainer';
 // pages
 import HomePage from './components/HomePage';
 import ShowListPage from './components/ShowListPage';
+import NewListPage from './components/NewListPage';
 
 // stores
 import ListStore from './stores/ListStore';
@@ -19,10 +20,15 @@ const ConnectedShowListPage = connectToStores(ShowListPage, [ListStore], (contex
     list: context.getStore(ListStore).getList()
 }));
 
+const ConnectedNewListPage = connectToStores(NewListPage, [ListStore], (context, props) => ({
+    // TODO do I even need to connect this store to execute actions?
+}));
+
 const routes = (
   <Route path="/" component={AppContainer}>
     <IndexRoute component={HomePage} />
     <Route path="all-time-top-5-star-wars-movies/1234" component={ConnectedShowListPage} />
+    <Route path="new" component={ConnectedNewListPage} />
   </Route>
 );
 
