@@ -11,7 +11,9 @@ class ShowListPage extends React.Component {
     // further actions are fired
     setTimeout(() => {
         // TODO figure out why the contextTypes thingy isn't working as i expected.
-        this.context.executeAction(fetchList);
+        if (this.props.list === null) {
+            this.context.executeAction(fetchList);
+        }
     }, 0);
   }
 
@@ -34,6 +36,7 @@ class ShowListPage extends React.Component {
 
 ShowListPage.contextTypes = {
     executeAction: React.PropTypes.func.isRequired,
+    router: React.PropTypes.func.isRequired
 };
 
 export default ShowListPage;

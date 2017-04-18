@@ -5,7 +5,7 @@ class ListStore extends BaseStore {
     super(dispatcher);
 
     this.dispatcher = dispatcher;
-    this.list = [];
+    this.list = null;
   }
 
   getList() {
@@ -13,6 +13,7 @@ class ListStore extends BaseStore {
   }
 
   handleUpdateList(list) {
+    console.log("store: handleUpdateList", list);
     this.list = list;
     this.emitChange();
   }

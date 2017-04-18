@@ -21,14 +21,16 @@ const ConnectedShowListPage = connectToStores(ShowListPage, [ListStore], (contex
 }));
 
 const ConnectedNewListPage = connectToStores(NewListPage, [ListStore], (context, props) => ({
-    // TODO do I even need to connect this store to execute actions?
+    list: context.getStore(ListStore).getList()
 }));
 
 const routes = (
   <Route path="/" component={AppContainer}>
     <IndexRoute component={HomePage} />
-    <Route path="all-time-top-5-star-wars-movies/1234" component={ConnectedShowListPage} />
     <Route path="new" component={ConnectedNewListPage} />
+
+    // match listTitle last as it could be anything
+    <Route path=":listTitle/:listId" component={ConnectedShowListPage} />
   </Route>
 );
 
