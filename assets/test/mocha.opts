@@ -1,4 +1,0 @@
---compilers js:babel-register
---require test/utils/dom.js
---require should
---reporter nyan
