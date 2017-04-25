@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :graphql, only: :create
+  resources :graphql, only: [:index, :create]
 end
