@@ -9,7 +9,7 @@ import {
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 
-import './App.css';
+// import './App.css';
 
 const listStore = observable({ lists: null })
 
@@ -40,8 +40,6 @@ const getList = (id) => {
   }
 
   return listStore.lists.find( (list) => {
-    console.log(list.id)
-    console.log(id)
     return list.id === parseInt(id, 10)
   })
 }
@@ -61,8 +59,6 @@ const Home = observer(() => {
 const UserList = ( { match } ) => {
   const list = getList(match.params.listId)
   if (!list) {
-    console.log(match)
-    console.log(listStore.lists)
     return(<h2>404</h2>)
   }
 
